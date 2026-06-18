@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PopPrincess | Женственная мода в Уссурийске</title>
+    <meta name="description" content="Интернет-магазин женской одежды PopPrincess в Уссурийске. Трендовые коллекции, платья, блузы, аксессуары. Быстрая доставка и примерка.">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FEFCF8;
+            color: #2C2A29;
+            line-height: 1.4;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --bg-light: #FFFFFF;
+            --bg-soft: #FDF9F5;
+            --primary-pink: #F4A2A2;
+            --primary-pink-dark: #E88383;
+            --gold-accent: #D4AF6A;
+            --gold-light: #F3E5C9;
+            --text-dark: #2A2726;
+            --text-muted: #6B625E;
+            --border-light: #F0EBE5;
+            --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 18px 30px -12px rgba(0, 0, 0, 0.12);
+            --transition: all 0.25s ease;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(2px);
+            background-color: rgba(255, 255, 255, 0.96);
+        }
+
+        .nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo h1 {
+            font-size: 1.9rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #2C2A29 0%, #D4AF6A 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .logo span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gold-accent);
+            display: block;
+            line-height: 1.2;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: var(--transition);
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .cart-icon:hover {
+            color: var(--primary-pink);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -12px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--primary-pink);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-pink-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(244, 162, 162, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(100deg, #FFF8F2 0%, #FFFFFF 100%);
+            padding: 48px 0 64px 0;
+        }
+
+        .hero-grid {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: var(--gold-light);
+            color: var(--gold-accent);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #1E1C1B;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 36px;
+        }
+
+        .stat-number {
+            font-weight: 800;
+            font-size: 1.7rem;
+            color: var(--primary-pink);
+        }
+
+        .section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 32px;
+        }
+
+        .product-card {
+            background: var(--bg-light);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            border: 1px solid var(--border-light);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            background: #F5F0EA;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.02);
+        }
+
+        .product-info {
+            padding: 20px 16px 22px;
+        }
+
+        .product-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            color: var(--primary-pink);
+            font-weight: 700;
+            font-size: 1.25rem;
+            margin: 12px 0 16px;
+        }
+
+        .add-to-cart-btn {
+            width: 100%;
+            background: #F3EFEA;
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-pink);
+            color: white;
+        }
+
+        .features {
+            background: var(--bg-soft);
+            border-radius: 48px;
+            margin: 20px 0;
+            padding: 48px 24px;
+        }
+
+        .features-grid {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 28px;
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--gold-accent);
+            margin-bottom: 12px;
+        }
+
+        /* Блок контактов + карта */
+        .contacts-map-section {
+            background: var(--bg-light);
+            border-radius: 40px;
+            padding: 48px 0;
+            margin-top: 20px;
+        }
+
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .contact-info-card {
+            flex: 1.2;
+            background: #FFF9F5;
+            border-radius: 32px;
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .map-container {
+            flex: 1.8;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            min-height: 380px;
+            background: #f0ece6;
+        }
+
+        #yandexMap {
+            width: 100%;
+            height: 100%;
+            min-height: 380px;
+        }
+
+        .shop-address {
+            margin: 24px 0;
+            font-size: 1.1rem;
+        }
+
+        .shop-address i {
+            color: var(--primary-pink);
+            width: 32px;
+        }
+
+        .work-time {
+            background: var(--gold-light);
+            border-radius: 20px;
+            padding: 18px;
+            margin-top: 24px;
+        }
+
+        /* checkout */
+        .checkout-section {
+            background: #FFFFFF;
+            border-radius: 28px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border-light);
+            border-radius: 28px;
+            font-family: inherit;
+            background: #FEFAF5;
+        }
+
+        .footer {
+            background: #1F1C1A;
+            color: #D9D2CC;
+            padding: 48px 0 24px;
+            margin-top: 48px;
+        }
+
+        @media (max-width: 860px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-content h2 {
+                font-size: 2.4rem;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .two-columns {
+                flex-direction: column;
+            }
+            .map-container {
+                min-height: 320px;
+            }
+            .checkout-section {
+                padding: 24px;
+            }
+        }
+
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cart-modal-content {
+            background: white;
+            width: 90%;
+            max-width: 550px;
+            border-radius: 32px;
+            padding: 28px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cart-items-list {
+            margin: 20px 0;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 0;
+        }
+
+        .cart-total {
+            font-weight: 800;
+            font-size: 1.3rem;
+            text-align: right;
+            margin-top: 16px;
+            border-top: 2px dashed #eee;
+            padding-top: 16px;
+        }
+
+        .close-modal {
+            float: right;
+            font-size: 1.7rem;
+            cursor: pointer;
+        }
+
+        .success-toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2C2A29;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 40px;
+            z-index: 1100;
+            font-size: 0.9rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .mobile-menu-icon {
+            display: none;
+            font-size: 1.6rem;
+        }
+        @media (max-width: 860px) {
+            .mobile-menu-icon {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo">
+                <h1>PopPrincess<span>Уссурийск</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#delivery">Доставка</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">Новая коллекция весна-лето 2026</div>
+                <h2>Стиль, который<br>вдохновляет</h2>
+                <p>Интернет-магазин женской одежды PopPrincess — изящные платья, элегантные блузы и трендовые аксессуары. Быстрая доставка по Уссурийску и Приморскому краю.</p>
+                <a href="#catalog" class="btn-primary">Смотреть новинки</a>
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-number">1500+</div><div>Моделей</div></div>
+                    <div class="stat-item"><div class="stat-number">98%</div><div>Довольных клиентов</div></div>
+                </div>
+            </div>
+            <div class="hero-image" style="flex:0.8; text-align:center;">
+                <img src="https://placehold.co/500x600/FFF2E6/D4AF6A?text=PopPrincess+Style" style="max-width:100%; border-radius: 32px; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);" alt="Модный образ PopPrincess">
+            </div>
+        </div>
+    </section>
+
+    <section id="catalog" class="section">
+        <div class="container">
+            <h2 class="section-title">Пополните свой гардероб</h2>
+            <p class="section-sub">Только актуальные модели, натуральные ткани и безупречный крой</p>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <div class="container" id="delivery">
+        <div class="features">
+            <div class="features-grid">
+                <div><div class="feature-icon"><i class="fas fa-truck-fast"></i></div><h4>Быстрая доставка</h4><p>По Уссурийску за 1-2 дня</p></div>
+                <div><div class="feature-icon"><i class="fas fa-rotate-left"></i></div><h4>Легкий возврат</h4><p>Примерка перед покупкой</p></div>
+                <div><div class="feature-icon"><i class="fas fa-gem"></i></div><h4>Премиум качество</h4><p>Только проверенные ткани</p></div>
+                <div><div class="feature-icon"><i class="fas fa-credit-card"></i></div><h4>Удобная оплата</h4><p>Карта, наличные, СБП</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Блок с картой (работает через Яндекс.Карты) -->
+    <div class="contacts-map-section" id="contacts">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 12px;">Мы на карте</h2>
+            <p class="section-sub">Приходите за вдохновением в наш магазин в Уссурийске</p>
+            <div class="two-columns">
+                <div class="contact-info-card">
+                    <h3><i class="fas fa-store" style="color:#D4AF6A;"></i> PopPrincess</h3>
+                    <div class="shop-address">
+                        <p><i class="fas fa-map-pin"></i> <strong>Цокольный этаж, магазин женской одежды</strong><br>
+                        г. Уссурийск, ул. Краснознаменная, д. 75</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 10:00 – 20:00</p>
+                        <p><i class="fas fa-phone-alt"></i> +7 (423) 555-23-23</p>
+                        <p><i class="fab fa-instagram"></i> @popprincess_ussuriysk</p>
+                    </div>
+                    <div class="work-time">
+                        <i class="fas fa-calendar-check"></i> Самовывоз из магазина: 10:00–19:00, без обеда<br>
+                        <i class="fas fa-map-marked-alt"></i> Примерка и консультация стилиста.
+                    </div>
+                </div>
+                <div class="map-container">
+                    <div id="yandexMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout order form -->
+    <div class="container" id="checkout">
+        <div class="checkout-section">
+            <h3 style="font-size: 1.8rem; margin-bottom: 12px;">Оформление заказа</h3>
+            <p>Заполните форму, и наш менеджер свяжется с вами для подтверждения</p>
+            <form id="orderForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group"><input type="text" placeholder="Ваше имя" id="fullName" required></div>
+                    <div class="form-group"><input type="tel" placeholder="Телефон" id="phone" required></div>
+                </div>
+                <div class="form-group"><input type="email" placeholder="Email для подтверждения" id="email" required></div>
+                <div class="form-group"><input type="text" placeholder="Адрес доставки (г. Уссурийск, улица, дом)" id="address" required></div>
+                <div class="form-group">
+                    <select id="deliveryMethod">
+                        <option value="courier">Курьер по Уссурийску</option>
+                        <option value="cdek">СДЭК</option>
+                        <option value="pickup">Самовывоз (ул. Краснознаменная, 75)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="paymentMethod">
+                        <option value="card">Онлайн банковской картой</option>
+                        <option value="cash">Наличные при получении</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Оформить заказ</button>
+            </form>
+            <p style="font-size: 0.8rem; margin-top: 16px; color: #a09285;">Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных</p>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px;">
+            <div><h3 style="color: #D4AF6A;">PopPrincess</h3><p>Женственная мода в сердце Уссурийска</p><p><i class="fas fa-map-marker-alt"></i> ул. Краснознаменная, 75</p></div>
+            <div><h4>Контакты</h4><p><i class="fab fa-instagram"></i> @popprincess_ussuriysk</p><p><i class="fas fa-phone"></i> +7 (423) 555-23-23</p></div>
+            <div><h4>Информация</h4><p>Доставка и оплата</p><p>Возврат</p><p>Политика конфиденциальности</p></div>
+        </div>
+        <hr style="margin: 32px 0 20px; border-color: #3A3532;">
+        <p style="text-align: center;">© 2026 Интернет-магазин PopPrincess. Разработка в рамках дипломного проекта</p>
+    </div>
+</footer>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h3>Корзина</h3>
+        <div id="cartItemsList" class="cart-items-list">Корзина пуста</div>
+        <div class="cart-total" id="cartTotalPrice">Итого: 0 ₽</div>
+        <button id="proceedToCheckoutBtn" class="btn-primary" style="width:100%; margin-top: 20px;">Перейти к оформлению</button>
+    </div>
+</div>
+<div id="toastMessage" class="success-toast">Товар добавлен в корзину</div>
+
+<script>
+    // Яндекс.Карты
+    ymaps.ready(init);
+    function init() {
+        var myMap = new ymaps.Map("yandexMap", {
+            center: [43.796430, 131.949099],
+            zoom: 17,
+            controls: ['zoomControl', 'fullscreenControl']
+        });
+        
+        var myPlacemark = new ymaps.Placemark([43.796430, 131.949099], {
+            hintContent: 'PopPrincess',
+            balloonContent: '<strong>PopPrincess</strong><br>г. Уссурийск, ул. Краснознаменная, 75<br>Цокольный этаж<br>☎ +7 (423) 555-23-23'
+        }, {
+            preset: 'islands#pinkIcon',
+            iconColor: '#F4A2A2'
+        });
+        
+        myMap.geoObjects.add(myPlacemark);
+    }
+
+    // Товары
+    const products = [
+        { id: 1, name: "Платье-футляр «Элегия»", price: 4590, img: "https://avatars.mds.yandex.net/get-mpic/17407955/2a0000019978bdd198b312cc33e91cbc973c/orig" },
+        { id: 2, name: "Блуза шелковая «Aura»", price: 3290, img: "https://basket-14.wbbasket.ru/vol2128/part212805/212805529/images/big/1.webp" },
+        { id: 3, name: "Юбка-миди «Лаванда»", price: 2890, img: "https://avatars.mds.yandex.net/i?id=dd90ad29d3e8d65c790ff5ebd60f567c_l-9677438-images-thumbs&n=13" },
+        { id: 4, name: "Платье макси «Закат»", price: 5990, img: "https://avatars.mds.yandex.net/i?id=6c4712c610bc5ab1ac14888f2a27c8d1_sr-5241344-images-thumbs&n=13" },
+        { id: 5, name: "Жакет «Золотая нить»", price: 4990, img: "https://avatars.mds.yandex.net/i?id=553ae28c2ee1b99ed317c0b5839191f7_l-4575620-images-thumbs&n=13" },
+        { id: 6, name: "Сумка-шоппер «Princess»", price: 2390, img: "https://avatars.mds.yandex.net/i?id=fee17abb36060d97e1f3af8ea1b3bcb0f345f678-11404303-images-thumbs&n=13" }
+    ];
+
+    let cart = JSON.parse(localStorage.getItem('popprincess_cart')) || [];
+
+    function saveCart() {
+        localStorage.setItem('popprincess_cart', JSON.stringify(cart));
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        document.getElementById('cartCount').innerText = count;
+        const cartContainer = document.getElementById('cartItemsList');
+        if (!cartContainer) return;
+        if (cart.length === 0) {
+            cartContainer.innerHTML = '<p style="text-align:center; padding:20px;">Ваша корзина пуста, добавьте понравившиеся вещи 🛍️</p>';
+            document.getElementById('cartTotalPrice').innerText = `Итого: 0 ₽`;
+            return;
+        }
+        let html = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            html += `<div class="cart-item"><div><strong>${item.name}</strong><br><span>${item.price}₽ x ${item.quantity}</span></div><div>${itemTotal}₽ <button class="remove-item" data-id="${item.id}" style="background:none; border:none; color:#D4AF6A; margin-left:10px; cursor:pointer;"><i class="fas fa-trash-alt"></i></button></div></div>`;
+        });
+        cartContainer.innerHTML = html;
+        document.getElementById('cartTotalPrice').innerText = `Итого: ${total} ₽`;
+        document.querySelectorAll('.remove-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const id = parseInt(btn.dataset.id);
+                cart = cart.filter(item => item.id !== id);
+                saveCart();
+                showToast('Товар удален');
+            });
+        });
+    }
+
+    function addToCart(product, quantity = 1) {
+        const existing = cart.find(item => item.id === product.id);
+        if (existing) existing.quantity += quantity;
+        else cart.push({ ...product, quantity });
+        saveCart();
+        showToast(`${product.name} добавлен в корзину ✨`);
+    }
+
+    function showToast(msg) {
+        const toast = document.getElementById('toastMessage');
+        toast.innerText = msg;
+        toast.style.opacity = '1';
+        setTimeout(() => toast.style.opacity = '0', 2000);
+    }
+
+    function renderProducts() {
+        const grid = document.getElementById('productGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+        products.forEach(prod => {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `<img class="product-img" src="${prod.img}" alt="${prod.name}"><div class="product-info"><div class="product-title">${prod.name}</div><div class="product-price">${prod.price.toLocaleString()} ₽</div><button class="add-to-cart-btn" data-id="${prod.id}"><i class="fas fa-bag-shopping"></i> В корзину</button></div>`;
+            const btn = card.querySelector('.add-to-cart-btn');
+            btn.addEventListener('click', () => addToCart(prod));
+            grid.appendChild(card);
+        });
+    }
+
+    const modal = document.getElementById('cartModal');
+    document.getElementById('cartIcon').onclick = () => { modal.style.display = 'flex'; updateCartUI(); };
+    document.getElementById('closeModalBtn').onclick = () => { modal.style.display = 'none'; };
+    window.onclick = (e) => { if (e.target === modal) modal.style.display = 'none'; };
+    document.getElementById('proceedToCheckoutBtn')?.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('orderForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('fullName').value.trim();
+        if (!name || !document.getElementById('phone').value.trim() || !document.getElementById('email').value.trim() || !document.getElementById('address').value.trim()) {
+            alert('Заполните все поля доставки');
+            return;
+        }
+        if (cart.length === 0) { alert('Корзина пуста'); return; }
+        const totalSum = cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
+        alert(`✅ Спасибо, ${name}! Заказ на сумму ${totalSum}₽ принят. Менеджер свяжется с вами.`);
+        cart = [];
+        saveCart();
+        document.getElementById('orderForm').reset();
+        modal.style.display = 'none';
+        showToast('Заказ оформлен! Ждём вас снова ❤️');
+    });
+
+    renderProducts();
+    updateCartUI();
+    
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === "#") return;
+            const target = document.querySelector(href);
+            if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+        });
+    });
+</script>
+</body>
+</html>
