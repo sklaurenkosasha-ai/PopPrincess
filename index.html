@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>PopPrincess | Женственная мода в Уссурийске</title>
+    <meta name="description" content="Интернет-магазин женской одежды PopPrincess в Уссурийске. Трендовые коллекции, платья, блузы, аксессуары. Быстрая доставка и примерка.">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- API Яндекс.Карт -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="header">
+    <div class="container">
+        <div class="nav-bar">
+            <div class="logo">
+                <h1>PopPrincess<span>Уссурийск</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#catalog">Каталог</a></li>
+                <li><a href="#delivery">Доставка</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <div class="header-actions">
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                <div class="mobile-menu-icon"><i class="fas fa-bars"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">Новая коллекция весна-лето 2026</div>
+                <h2>Стиль, который<br>вдохновляет</h2>
+                <p>Интернет-магазин женской одежды PopPrincess — изящные платья, элегантные блузы и трендовые аксессуары. Быстрая доставка по Уссурийску и Приморскому краю.</p>
+                <a href="#catalog" class="btn-primary">Смотреть новинки</a>
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-number">1500+</div><div>Моделей</div></div>
+                    <div class="stat-item"><div class="stat-number">98%</div><div>Довольных клиентов</div></div>
+                </div>
+            </div>
+            <div class="hero-image" style="flex:0.8; text-align:center;">
+                <img src="https://placehold.co/500x600/FFF2E6/D4AF6A?text=PopPrincess+Style" style="max-width:100%; border-radius: 32px; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.1);" alt="Модный образ PopPrincess">
+            </div>
+        </div>
+    </section>
+
+    <!-- Catalog -->
+    <section id="catalog" class="section">
+        <div class="container">
+            <h2 class="section-title">Пополните свой гардероб</h2>
+            <p class="section-sub">Только актуальные модели, натуральные ткани и безупречный крой</p>
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <div class="container" id="delivery">
+        <div class="features">
+            <div class="features-grid">
+                <div><div class="feature-icon"><i class="fas fa-truck-fast"></i></div><h4>Быстрая доставка</h4><p>По Уссурийску за 1-2 дня</p></div>
+                <div><div class="feature-icon"><i class="fas fa-rotate-left"></i></div><h4>Легкий возврат</h4><p>Примерка перед покупкой</p></div>
+                <div><div class="feature-icon"><i class="fas fa-gem"></i></div><h4>Премиум качество</h4><p>Только проверенные ткани</p></div>
+                <div><div class="feature-icon"><i class="fas fa-credit-card"></i></div><h4>Удобная оплата</h4><p>Карта, наличные, СБП</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacts + Map -->
+    <div class="contacts-map-section" id="contacts">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 12px;">Мы на карте</h2>
+            <p class="section-sub">Приходите за вдохновением в наш магазин в Уссурийске</p>
+            <div class="two-columns">
+                <div class="contact-info-card">
+                    <h3><i class="fas fa-store" style="color:#D4AF6A;"></i> PopPrincess</h3>
+                    <div class="shop-address">
+                        <p><i class="fas fa-map-pin"></i> <strong>Цокольный этаж, магазин женской одежды</strong><br>
+                        г. Уссурийск, ул. Краснознаменная, д. 75</p>
+                        <p><i class="fas fa-clock"></i> Ежедневно: 10:00 – 20:00</p>
+                        <p><i class="fas fa-phone-alt"></i> +7 (423) 555-23-23</p>
+                        <p><i class="fab fa-instagram"></i> @popprincess_ussuriysk</p>
+                    </div>
+                    <div class="work-time">
+                        <i class="fas fa-calendar-check"></i> Самовывоз из магазина: 10:00–19:00, без обеда<br>
+                        <i class="fas fa-map-marked-alt"></i> Примерка и консультация стилиста.
+                    </div>
+                </div>
+                <div class="map-container">
+                    <div id="yandexMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout -->
+    <div class="container" id="checkout">
+        <div class="checkout-section">
+            <h3 style="font-size: 1.8rem; margin-bottom: 12px;">Оформление заказа</h3>
+            <p>Заполните форму, и наш менеджер свяжется с вами для подтверждения</p>
+            <form id="orderForm">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group"><input type="text" placeholder="Ваше имя" id="fullName" required></div>
+                    <div class="form-group"><input type="tel" placeholder="Телефон" id="phone" required></div>
+                </div>
+                <div class="form-group"><input type="email" placeholder="Email для подтверждения" id="email" required></div>
+                <div class="form-group"><input type="text" placeholder="Адрес доставки (г. Уссурийск, улица, дом)" id="address" required></div>
+                <div class="form-group">
+                    <select id="deliveryMethod">
+                        <option value="courier">Курьер по Уссурийску</option>
+                        <option value="cdek">СДЭК</option>
+                        <option value="pickup">Самовывоз (ул. Краснознаменная, 75)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="paymentMethod">
+                        <option value="card">Онлайн банковской картой</option>
+                        <option value="cash">Наличные при получении</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width:100%;">Оформить заказ</button>
+            </form>
+            <p style="font-size: 0.8rem; margin-top: 16px; color: #a09285;">Нажимая кнопку, вы соглашаетесь с условиями обработки персональных данных</p>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px;">
+            <div><h3 style="color: #D4AF6A;">PopPrincess</h3><p>Женственная мода в сердце Уссурийска</p><p><i class="fas fa-map-marker-alt"></i> ул. Краснознаменная, 75</p></div>
+            <div><h4>Контакты</h4><p><i class="fab fa-instagram"></i> @popprincess_ussuriysk</p><p><i class="fas fa-phone"></i> +7 (423) 555-23-23</p></div>
+            <div><h4>Информация</h4><p>Доставка и оплата</p><p>Возврат</p><p>Политика конфиденциальности</p></div>
+        </div>
+        <hr style="margin: 32px 0 20px; border-color: #3A3532;">
+        <p style="text-align: center;">© 2026 Интернет-магазин PopPrincess. Разработка в рамках дипломного проекта</p>
+    </div>
+</footer>
+
+<!-- Cart Modal -->
+<div id="cartModal" class="cart-modal">
+    <div class="cart-modal-content">
+        <span class="close-modal" id="closeModalBtn">&times;</span>
+        <h3>Корзина</h3>
+        <div id="cartItemsList" class="cart-items-list">Корзина пуста</div>
+        <div class="cart-total" id="cartTotalPrice">Итого: 0 ₽</div>
+        <button id="proceedToCheckoutBtn" class="btn-primary" style="width:100%; margin-top: 20px;">Перейти к оформлению</button>
+    </div>
+</div>
+<div id="toastMessage" class="success-toast">Товар добавлен в корзину</div>
+
+<!-- Main JS -->
+<script src="js/main.js"></script>
+</body>
+</html>
