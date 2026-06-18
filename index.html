@@ -8,11 +8,11 @@
     
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <!-- API Яндекс.Карт -->
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
-    <!-- Main Styles -->
+    
+    <!-- Основные стили -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -41,7 +41,7 @@
 </div>
 
 <main>
-    <!-- Hero Section -->
+    <!-- HERO -->
     <section class="hero">
         <div class="container hero-grid">
             <div class="hero-content">
@@ -60,7 +60,7 @@
         </div>
     </section>
 
-    <!-- Catalog -->
+    <!-- КАТАЛОГ -->
     <section id="catalog" class="section">
         <div class="container">
             <h2 class="section-title">Пополните свой гардероб</h2>
@@ -69,7 +69,7 @@
         </div>
     </section>
 
-    <!-- Features -->
+    <!-- ПРЕИМУЩЕСТВА -->
     <div class="container" id="delivery">
         <div class="features">
             <div class="features-grid">
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    <!-- Contacts + Map -->
+    <!-- КОНТАКТЫ + КАРТА -->
     <div class="contacts-map-section" id="contacts">
         <div class="container">
             <h2 class="section-title" style="margin-bottom: 12px;">Мы на карте</h2>
@@ -108,7 +108,7 @@
         </div>
     </div>
 
-    <!-- Checkout -->
+    <!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
     <div class="container" id="checkout">
         <div class="checkout-section">
             <h3 style="font-size: 1.8rem; margin-bottom: 12px;">Оформление заказа</h3>
@@ -140,7 +140,7 @@
     </div>
 </main>
 
-<!-- Footer -->
+<!-- ФУТЕР -->
 <footer class="footer">
     <div class="container">
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px;">
@@ -153,7 +153,7 @@
     </div>
 </footer>
 
-<!-- Cart Modal -->
+<!-- КОРЗИНА (модальное окно) -->
 <div id="cartModal" class="cart-modal">
     <div class="cart-modal-content">
         <span class="close-modal" id="closeModalBtn">&times;</span>
@@ -165,7 +165,10 @@
 </div>
 <div id="toastMessage" class="success-toast">Товар добавлен в корзину</div>
 
-<!-- Main JS -->
-<script src="js/main.js"></script>
+<!-- API Яндекс.Карт -->
+<script src="https://api-maps.yandex.ru/2.1/?apikey=ваш-api-ключ&lang=ru_RU" type="text/javascript"></script>
+
+<!-- Основной скрипт -->
+<script src="js/script.js"></script>
 </body>
 </html>
